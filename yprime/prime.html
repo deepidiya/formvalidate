@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Prime Number </title>
+    </head>
+    <style>
+        body{
+    
+          background-image:url("fact.jpg");
+             background-size:cover;
+             background-repeat:no-repeat;
+             background-position:center;
+          width:1200px;
+          height:700px;
+          
+        }
+        form {
+          max-width: 500px;
+          max-height: 500px;
+          margin: 40px auto;
+          padding: 20px;
+          text-align: center;
+          box-shadow:2px 5px 10px 0px #000000;
+          background-color: #aeebff;
+          }
+    button
+    {
+          display: inline-block;
+            background-color: rgb(55, 113, 180);
+             color: white;
+          padding: 0.5em 1.5em;
+            border: bold;
+          border-radius: 50px;
+            cursor: pointer;
+          font-size: 25px;
+          outline: none;
+          text-decoration: none;
+          margin-top: 1em;
+          font-weight: small;
+          font-family: 'Times New Roman', Times, serif;
+    } 
+    button:hover{
+          background-color:rgb(231, 165, 211);
+          color:white;
+    }
+    
+    input{
+      font-size:20px;
+      color:darkslategrey;
+    }
+    h1{
+      font-size:40px;
+      font-family:'Times New Roman', Times, serif;
+      color:rgb(233, 45, 139);
+    }
+    h3{
+      color:rgb(0, 0, 0);
+      font-family:'Times New Roman', Times, serif;
+      font-size:20px;
+    }
+    #outputArea
+        {
+           color:rgb(24, 75, 153);
+           font-family:'Times New Roman', Times, serif;
+           font-size:30px;
+           font-weight:bold;
+        }
+    </style>
+    <body>
+        <form>
+            <h2>Prime Number Gerneration</h2>
+            <h3> Enter the Starting Number:</h3>
+                <input id= "prime" type="number"><br>
+            <h3>Enter the Ending Number: </h3>
+                <input id="prime" type="number"><br>
+                <ul id="res">
+                </ul>
+                <button class="button" type="button" onclick="prime()">Gernerate</button>
+            </form>
+        
+        <script>
+            function prime()
+            {
+                var start = parseInt(document.getElementById("prime").value);
+                var end = parseInt(document.getElementById("prime").value);
+                const P=document.getElementById("res");
+                for(var it=start;it<=end;i++)
+            {
+                var a =false;
+                for (var i=2;i<=end;i++)
+            {
+                if(it %i==0&&i!=it)
+            {
+                a=true;
+            }
+            }
+            if(a==false)
+            {
+                const li =document.createElement("li");
+                li.tentContent=it;
+                P.appendChild(li);
+            }
+            }
+            }
+            </script>
+            
+            </body>
+            </html>

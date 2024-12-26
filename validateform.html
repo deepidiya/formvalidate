@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<head>
+    
+    <title>Form Validation</title>
+    <style>
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+        body{
+       background-image:url("a.jpg") ;
+       background-size: cover;
+       background-repeat: no-repeat;
+    }
+    input[type="text"],input[type="phone"],input[type="email"]{width:100%;
+    padding:10px;
+    border:1px solid #ccc;
+     border-radius:3px;}
+    label{
+        font-style:italic;
+        
+    }
+    h1{
+        font-style: bold;
+        
+    }
+    button{
+        background-color: black;
+        color:#ccc;
+    }
+    button:hover{
+        background-color: blueviolet;
+    }
+    </style>
+</head>
+<body>
+    <h2>Registration form</h2>
+    <form id="myForm">
+        <label for="name">Name (Only alphabets):</label>
+        <input type="text" id="name" name="name"><br>
+        <span id="nameError" class="error"></span><br>
+
+        <label for="password">Password (6 characters, no special characters):</label>
+        <input type="password" id="password" name="password"><br>
+        <span id="passwordError" class="error"></span><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br>
+        <span id="emailError" class="error"></span><br>
+
+        <label for="age">Age (18-99):</label>
+        <input type="number" id="age" name="age" min="18" max="99"><br>
+        <span id="ageError" class="error"></span><br>
+
+        <label for="phone">Phone Number (10 digits):</label>
+        <input type="text" id="phone" name="phone" maxlength="10"><br>
+        <span id="phoneError" class="error"></span><br>
+
+        <input type="submit" value="Submit">
+        <button type="reset">Clear</button>
+    </form>
+
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Clear previous error messages
+            document.getElementById('nameError').textContent = '';
+            document.getElementById('passwordError').textContent = '';
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('ageError').textContent = '';
+            document.getElementById('phoneError').textContent = '';
+
+            // Get form values
+            var name = document.getElementById('name').value.trim();
+            var password = document.getElementById('password').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var age = parseInt(document.getElementById('age').value.trim(), 10);
+            var phone = document.getElementById('phone').value.trim();
+
+            // Validation flags
+            var isValid = true;
+
+            // Validate Name
+            if (!/^[a-zA-Z\s]+$/.test(name)) {
+                document.getElementById('nameError').textContent = 'Name should contain only alphabets.';
+                isValid = false;
+            }
+
+            // Validate Password
+            if (!(password.length === 6 && /^[a-zA-Z0-9]+$/.test(password))) {
+                document.getElementById('passwordError').textContent = 'Password should be exactly 6 characters long and contain no special characters.';
+                isValid = false;
+            }
+
+            // Validate Email
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                document.getElementById('emailError').textContent = 'Email is not valid.';
+                isValid = false;
+            }
+
+            // Validate Age
+            if (isNaN(age) || age < 18 || age > 99) {
+                document.getElementById('ageError').textContent = 'Age should be between 18 and 99.';
+                isValid = false;
+            }
+
+            // Validate Phone Number
+            if (!/^\d{10}$/.test(phone)) {
+                document.getElementById('phoneError').textContent = 'Phone number should be exactly 10 digits.';
+                isValid = false;
+            }
+
+            // If all validations pass
+            if (isValid) {
+                alert('Form submitted successfully!');
+                
+            }
+        });
+    </script>
+</body>
+</html>
